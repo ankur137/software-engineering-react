@@ -6,7 +6,7 @@ const Tuit = ({tuit}) => {
   return(
     <li className="p-2 ttr-tuit list-group-item d-flex rounded-0">
       <div className="pe-2">
-        <img src={`../images/${tuit['avatar-logo']}`}
+        <img alt="tuit avatar" src={`../images/${tuit['avatar-logo']}`}
              className="ttr-tuit-avatar-logo rounded-circle"/>
       </div>
       <div>
