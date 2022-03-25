@@ -12,7 +12,7 @@ import Messages from "../messages";
 import Lists from "../lists";
 import More from "../more";
 
-function Tuiter () {
+function Index () {
   return(
     <BrowserRouter>
       <div className="container">
@@ -43,4 +43,4 @@ function Tuiter () {
     </BrowserRouter>
   );
 }
-export default Tuiter;
+export default Index;

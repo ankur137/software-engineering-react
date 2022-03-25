@@ -3,11 +3,11 @@ import './styles.css';
 // import Tuits from "./components/tuits";
 // import WhatsHappening from "./components/whats-happening/whats-happening";
 // import Bookmarks from "./components/bookmarks/bookmarks";
-import Tuiter from "./components/tuiter/tuiter";
+import Index from "./components/tuiter";
 
 function App() {
   return (
-    <Tuiter/>
+    <Index/>
   );
 }
 
