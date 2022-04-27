@@ -1,32 +1,37 @@
 import axios from "axios";
+const BASE_URL = process.env.REACT_APP_BASE_URL;
 
 const TUITS_API = "https://fse-node-a2-ankur.herokuapp.com/tuits";
 const USERS_API = "https://fse-node-a2-ankur.herokuapp.com/users";
 
+const api = axios.create({
+    withCredentials: true
+});
+
 export const findAllTuits = () =>
-    axios.get(TUITS_API)
+    api.get(TUITS_API)
         .then(response => response.data);
 
 export const findTuitById = (tid) =>
-    axios.get(`${TUITS_API}/${tid}`)
+    api.get(`${TUITS_API}/${tid}`)
         .then(response => response.data);
 
 export const findTuitByUser = (uid) =>
-    axios.get(`${USERS_API}/${uid}/tuits`)
+    api.get(`${USERS_API}/${uid}/tuits`)
         .then(response => response.data);
 
 export const createTuit = (uid, tuit) =>
-    axios.post(`${USERS_API}/${uid}/tuits`, tuit)
+    api.post(`${USERS_API}/${uid}/tuits`, tuit)
         .then(response => response.data);
 
 export const updateTuit = (tid, tuit) =>
-    axios.post(`${TUITS_API}/${tid}`, tuit)
+    api.post(`${TUITS_API}/${tid}`, tuit)
         .then(response => response.data);
 
 export const deleteTuit = (tid) =>
-    axios.delete(`${TUITS_API}/${tid}`)
+    api.delete(`${TUITS_API}/${tid}`)
         .then(response => response.data);
 
 export const deleteTuitByUserId = (uid) =>
-    axios.delete(`${USERS_API}/tuits/${uid}`)
+    api.delete(`${USERS_API}/tuits/${uid}`)
         .then(response => response.data);
