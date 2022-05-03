@@ -13,9 +13,9 @@ describe('createUser', () => {
   };
 
   // setup test before running test
-  beforeAll(async () => {
+  beforeAll(() => {
     // remove any/all users to make sure we create it in the test
-    const response =  await deleteUsersByUsername(ripley.username);
+    return deleteUsersByUsername(ripley.username);
   })
 
   // clean up after test runs
