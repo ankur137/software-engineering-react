@@ -1,41 +1,34 @@
-import {Tuits} from "../components/tuits/index";
-import {screen} from "@testing-library/react";
-import {render} from "@testing-library/react";
+import Tuits from "../components/tuits";
+import {screen, render} from "@testing-library/react";
 import {HashRouter} from "react-router-dom";
 import {findAllTuits} from "../services/tuits-service";
 
 const MOCKED_TUITS = [
-  {tuit: "alice's tuit",postedBy:'alice123', _id:"6201d14ed4a5094d1244cdf0"},
-  {tuit: "bob's tuit",postedBy:'bob123',  _id:"6201d14ed4a5094d1244cdf1"},
-  {tuit: "charlie's tuit",postedBy:'bob123',  _id:"6201d14ed4a5094d1244cdf2"}
+  { tuit: "alice's tuit", postedOn: 'March 187 2022', postedBy: 'alice', _id: '1' },
+  { tuit: "bob's tuit", postedOn: 'March 18, 2022', postedBy: 'bob', _id: '2' },
+  { tuit: "charlie's tuit", postedOn: 'March 19, 2022', postedBy: 'charlie', _id: '3' }
 ];
 
-// test tuit list renders static tuit array
 test('tuit list renders static tuit array', () => {
   render(
-      <HashRouter>
-        <Tuits tuits={MOCKED_TUITS}/>
-      </HashRouter>
-  );
-
-  const linkElementA = screen.getByText(/alice's tuit/i);
-  const linkElementB = screen.getByText(/bob's tuit/i);
-  const linkElementC = screen.getByText(/charlie's tuit/i);
-  expect(linkElementA).toBeInTheDocument();
-  expect(linkElementB).toBeInTheDocument();
-  expect(linkElementC).toBeInTheDocument();
+    <HashRouter>
+      <Tuits tuits={MOCKED_TUITS}/>
+    </HashRouter>);
+  const linkElement = screen.getByText(/alice's tuit/i);
+  expect(linkElement).toBeInTheDocument();
 });
 
-//test tuit list renders async
 test('tuit list renders async', async () => {
   const tuits = await findAllTuits();
   render(
-      <HashRouter>
-        <Tuits tuits={tuits}/>
-      </HashRouter>
-  );
-  const linkElement = screen.getByText(/In 2021, our @NASAPersevere/i);
-  const linkElementA = screen.getByText(/@SpaceX Dragon spacecraft/i);
-  expect(linkElement).toBeInTheDocument()
-  expect(linkElementA).toBeInTheDocument()
+    <HashRouter>
+      <Tuits tuits={tuits}/>
+    </HashRouter>);
+
+  // Verifying number of occurances of text SpaceX
+  const tuitArray = screen.getAllByText(/SpaceX/i);
+  expect(tuitArray.length).toBeGreaterThanOrEqual(1);
+
+  const linkElement = screen.getByText(/SPACEX/i);
+  expect(linkElement).toBeInTheDocument();
 });
