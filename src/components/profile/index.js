@@ -11,6 +11,7 @@ const Profile = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const [profile, setProfile] = useState({});
+  // eslint-disable-next-line
   useEffect(async () => {
     try {
       const user = await service.profile();
@@ -18,6 +19,7 @@ const Profile = () => {
     } catch (e) {
       navigate('/login');
     }
+    // eslint-disable-next-line
   }, []);
   const logout = () => {
     service.logout()
@@ -31,10 +33,10 @@ const Profile = () => {
           <i className="fa fa-badge-check text-primary"></i></h4>
         <span className="ps-2">67.6K Tuits</span>
         <div className="mb-5 position-relative">
-          <img className="w-100" src="../images/nasa-profile-header.jpg"/>
+          <img alt="nasa-profile" className="w-100" src="../images/nasa-profile-header.jpg"/>
           <div className="bottom-0 left-0 position-absolute">
             <div className="position-relative">
-              <img className="position-relative ttr-z-index-1 ttr-top-40px ttr-width-150px"
+              <img alt="nasa-3" className="position-relative ttr-z-index-1 ttr-top-40px ttr-width-150px"
                    src="../images/nasa-3.png"/>
             </div>
           </div>
